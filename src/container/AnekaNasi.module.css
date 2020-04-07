@@ -1,0 +1,7 @@
+.header {
+  background-color: lightgreen;
+  height: 60vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
