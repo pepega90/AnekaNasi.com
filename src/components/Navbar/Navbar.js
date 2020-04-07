@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 const navbar = props => (
   <div
@@ -29,8 +30,12 @@ const navbar = props => (
 
     <div id="navbarBasicExample" className="navbar-menu">
       <div className="navbar-start">
-        <a className="navbar-item">Home</a>
-        <a className="navbar-item">Keranjang</a>
+        <NavLink to="/" className="navbar-item">
+          Home
+        </NavLink>
+        <NavLink to="/cart" className="navbar-item">
+          Keranjang
+        </NavLink>
       </div>
     </div>
   </div>

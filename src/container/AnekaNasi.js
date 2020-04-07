@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import styling from './AnekaNasi.module.css';
 import dataNasi from '../productData/nasiData';
+import * as actionTypes from '../store/actions';
+import {connect} from 'react-redux';
 
 class AnekaNasi extends Component {
   state = {
@@ -14,7 +16,14 @@ class AnekaNasi extends Component {
         <img src={nasi.image} alt={nasi.nama} />
         <div>
           <strong>Rp{nasi.harga}</strong>
-          <button className="button is-primary">Add to Keranjang</button>
+          <button
+            onClick={() =>
+              this.props.onAddCart(nasi.id, nasi.nama, nasi.harga, nasi.image)
+            }
+            className="button is-primary"
+          >
+            Add to Keranjang
+          </button>
         </div>
       </div>
     ));
@@ -35,4 +44,15 @@ class AnekaNasi extends Component {
   }
 }
 
-export default AnekaNasi;
+// redux section
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddCart: (id, nama, harga, gambar) =>
+      dispatch({
+        type: actionTypes.ADD_CART,
+        payload: {id: id, nama: nama, harga: harga, gambar: gambar}
+      })
+  };
+};
+
+export default connect(null, mapDispatchToProps)(AnekaNasi);
