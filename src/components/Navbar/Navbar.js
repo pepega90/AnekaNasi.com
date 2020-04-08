@@ -10,7 +10,7 @@ const navbar = props => (
     <div className="navbar-brand">
       <h1
         className="title"
-        style={{color: '#fff', padding: '5px 0', margin: '0 2rem'}}
+        style={{color: '#fff', padding: '15px 0', margin: '0 2rem'}}
       >
         AnekaNasi.com
       </h1>

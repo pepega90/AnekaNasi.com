@@ -1,0 +1,28 @@
+.header {
+  margin: 2rem 0;
+}
+
+.kolom {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+}
+
+.singleKolom {
+  margin: 2rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  width: 600px;
+  justify-content: space-between;
+}
+
+.total {
+  position: absolute;
+  right: 0;
+}

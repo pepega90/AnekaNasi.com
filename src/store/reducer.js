@@ -15,13 +15,17 @@ const reducer = (state = initalState, action) => {
           nama: action.payload.nama,
           harga: action.payload.harga,
           gambar: action.payload.gambar
-        })
+        }),
+        totalPrice: state.totalPrice + action.payload.harga
       };
     case actionTypes.REMOVE_CART:
-      const updatedCart = state.cart.filter(item => item.id !== action.id);
+      const updatedCart = state.cart.filter(
+        item => item.id !== action.payload.id
+      );
       return {
         ...state,
-        cart: updatedCart
+        cart: updatedCart,
+        totalPrice: state.totalPrice - action.payload.harga
       };
     default:
       return state;

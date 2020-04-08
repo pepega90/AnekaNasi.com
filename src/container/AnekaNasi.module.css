@@ -5,3 +5,17 @@
   flex-flow: column;
   justify-content: center;
 }
+
+.welcome {
+  margin: 4rem 0;
+}
+
+.image {
+  width: 250px;
+}
+
+.detail {
+  display: flex;
+  flex-flow: column;
+  margin: 10px 0;
+}
