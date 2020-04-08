@@ -1,6 +1,8 @@
 .header {
-  background-color: lightgreen;
-  height: 60vh;
+  background: url('../assets/new-bg.jpg');
+  /* opacity: 0.5; */
+  background-attachment: fixed;
+  height: 80vh;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -18,4 +20,19 @@
   display: flex;
   flex-flow: column;
   margin: 10px 0;
+}
+
+.card {
+  border: 1px solid #ccc;
+  transition: all 250ms;
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.productKolom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
 }

@@ -14,7 +14,8 @@ const reducer = (state = initalState, action) => {
           id: action.payload.id,
           nama: action.payload.nama,
           harga: action.payload.harga,
-          gambar: action.payload.gambar
+          gambar: action.payload.gambar,
+          inCart: !action.payload.inCart
         }),
         totalPrice: state.totalPrice + action.payload.harga
       };
@@ -26,6 +27,11 @@ const reducer = (state = initalState, action) => {
         ...state,
         cart: updatedCart,
         totalPrice: state.totalPrice - action.payload.harga
+      };
+    case actionTypes.ADD_QUANTITY:
+      return {
+        ...state,
+        totalPrice: state.totalPrice + action.payload.harga * action.payload.qty
       };
     default:
       return state;

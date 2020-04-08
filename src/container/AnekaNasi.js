@@ -12,7 +12,7 @@ class AnekaNasi extends Component {
   render() {
     let anekenasi = this.state.nasi.map(nasi => (
       <div key={nasi.nama} className="column">
-        <div className="card" style={{padding: '10px'}}>
+        <div className={styling.card} style={{padding: '10px'}}>
           <h1 className="title">{nasi.nama}</h1>
           <div className="card-image">
             <img src={nasi.image} className={styling.image} alt={nasi.nama} />
@@ -22,7 +22,13 @@ class AnekaNasi extends Component {
             <button
               style={{margin: '10px 0'}}
               onClick={() =>
-                this.props.onAddCart(nasi.id, nasi.nama, nasi.harga, nasi.image)
+                this.props.onAddCart(
+                  nasi.id,
+                  nasi.nama,
+                  nasi.harga,
+                  nasi.image,
+                  nasi.inCart
+                )
               }
               className="button is-primary"
             >
@@ -35,7 +41,7 @@ class AnekaNasi extends Component {
 
     return (
       <div>
-        <div className="container is-fluid">
+        <div className="container is-fullhd">
           <div className={styling.header}>
             <h1 className="title is-2">AnekaNasi.com</h1>
             <p className="subtitle is-4">
@@ -45,7 +51,9 @@ class AnekaNasi extends Component {
           <div className={styling.welcome}>
             <h1 className="title">Pilih Nasi Favorite Anda!</h1>
           </div>
-          <div className="columns">{anekenasi}</div>
+        </div>
+        <div className="container">
+          <div className={styling.productKolom}>{anekenasi}</div>
         </div>
       </div>
     );
@@ -55,10 +63,16 @@ class AnekaNasi extends Component {
 // redux section
 const mapDispatchToProps = dispatch => {
   return {
-    onAddCart: (id, nama, harga, gambar) =>
+    onAddCart: (id, nama, harga, gambar, inCart) =>
       dispatch({
         type: actionTypes.ADD_CART,
-        payload: {id: id, nama: nama, harga: harga, gambar: gambar}
+        payload: {
+          id: id,
+          nama: nama,
+          harga: harga,
+          gambar: gambar,
+          inCart: inCart
+        }
       })
   };
 };
