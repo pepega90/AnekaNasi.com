@@ -15,9 +15,11 @@ const reducer = (state = initalState, action) => {
           nama: action.payload.nama,
           harga: action.payload.harga,
           gambar: action.payload.gambar,
-          inCart: !action.payload.inCart
+          inCart: !action.payload.inCart,
+          quantity: action.payload.quantity
         }),
-        totalPrice: state.totalPrice + action.payload.harga
+        totalPrice:
+          state.totalPrice + action.payload.harga * action.payload.quantity
       };
     case actionTypes.REMOVE_CART:
       const updatedCart = state.cart.filter(
@@ -26,12 +28,32 @@ const reducer = (state = initalState, action) => {
       return {
         ...state,
         cart: updatedCart,
-        totalPrice: state.totalPrice - action.payload.harga
+        totalPrice:
+          state.totalPrice - action.payload.harga * action.payload.quantity
       };
-    case actionTypes.ADD_QUANTITY:
+    case actionTypes.INCREMENT:
+      const cartIncrementIndex = state.cart.findIndex(item => {
+        return item.id === action.payload.id;
+      });
+      const copyCart = [...state.cart];
+      copyCart[cartIncrementIndex].quantity += 1;
+      const incQuantity = copyCart[cartIncrementIndex].quantity;
       return {
         ...state,
-        totalPrice: state.totalPrice + action.payload.harga * action.payload.qty
+        cart: copyCart,
+        totalPrice: state.totalPrice + action.payload.harga * incQuantity
+      };
+    case actionTypes.DECREMENT:
+      const cartDecrementIndex = state.cart.findIndex(item => {
+        return item.id === action.payload.id;
+      });
+      const copyDecrementCart = [...state.cart];
+      copyDecrementCart[cartDecrementIndex].quantity -= 1;
+      const decQuantity = copyDecrementCart[cartDecrementIndex].quantity;
+      return {
+        ...state,
+        cart: copyDecrementCart,
+        totalPrice: state.totalPrice + action.payload.harga * decQuantity
       };
     default:
       return state;

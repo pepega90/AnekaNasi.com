@@ -12,12 +12,25 @@ class Cart extends Component {
           <img src={item.gambar} width="150" alt={item.nama} />
         </div>
         <strong>Rp{item.harga}</strong>
-        <input
-          type="number"
-          onChange={() => this.props.onQuantity(item.harga, item.quantity)}
-        />
+        <div className={styling.quantity}>
+          <button
+            onClick={() => this.props.onDecrement(item.id, item.harga)}
+            className="button is-danger"
+          >
+            -
+          </button>
+          <p>{item.quantity}</p>
+          <button
+            onClick={() => this.props.onIncrement(item.id, item.harga)}
+            className="button is-primary"
+          >
+            +
+          </button>
+        </div>
         <button
-          onClick={() => this.props.onRemoveCart(item.id, item.harga)}
+          onClick={() =>
+            this.props.onRemoveCart(item.id, item.harga, item.quantity)
+          }
           className="button is-danger"
         >
           Remove From Keranjang
@@ -41,9 +54,7 @@ class Cart extends Component {
         {this.props.cart.length > 0 ? (
           <div className={styling.total}>
             <h1 className="title">Total Harga</h1>
-            <h2 className="title is-3">
-              Rp{this.props.total.toLocaleString()}
-            </h2>
+            <h2 className="title is-3">Rp{this.props.total}</h2>
           </div>
         ) : null}
       </div>
@@ -60,16 +71,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onRemoveCart: (id, harga) =>
+    onRemoveCart: (id, harga, quantity) =>
       dispatch({
         type: actionTypes.REMOVE_CART,
-        payload: {id: id, harga: harga}
+        payload: {id: id, harga: harga, quantity: quantity}
       }),
-    onQuantity: (harga, qty) =>
-      dispatch({
-        type: actionTypes.ADD_QUANTITY,
-        payload: {harga: harga, qty: qty}
-      })
+    onIncrement: (id, harga) =>
+      dispatch({type: actionTypes.INCREMENT, payload: {id: id, harga: harga}}),
+    onDecrement: (id, harga) =>
+      dispatch({type: actionTypes.DECREMENT, payload: {id: id, harga: harga}})
   };
 };
 

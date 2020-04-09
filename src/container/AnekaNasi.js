@@ -27,7 +27,8 @@ class AnekaNasi extends Component {
                   nasi.nama,
                   nasi.harga,
                   nasi.image,
-                  nasi.inCart
+                  nasi.inCart,
+                  nasi.quantity
                 )
               }
               className="button is-primary"
@@ -63,7 +64,7 @@ class AnekaNasi extends Component {
 // redux section
 const mapDispatchToProps = dispatch => {
   return {
-    onAddCart: (id, nama, harga, gambar, inCart) =>
+    onAddCart: (id, nama, harga, gambar, inCart, quantity) =>
       dispatch({
         type: actionTypes.ADD_CART,
         payload: {
@@ -71,7 +72,8 @@ const mapDispatchToProps = dispatch => {
           nama: nama,
           harga: harga,
           gambar: gambar,
-          inCart: inCart
+          inCart: inCart,
+          quantity: quantity
         }
       })
   };

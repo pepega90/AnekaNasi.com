@@ -28,7 +28,7 @@ const navbar = props => (
       </a>
     </div>
 
-    <div id="navbarBasicExample" className="navbar-menu">
+    <div id="navbarBasicExample" className="navbar-menu is-active">
       <div className="navbar-start">
         <NavLink to="/" className="navbar-item">
           Home
