@@ -14,23 +14,21 @@ class Cart extends Component {
         <strong>Rp{item.harga}</strong>
         <div className={styling.quantity}>
           <button
-            onClick={() => this.props.onDecrement(item.id, item.harga)}
+            // onClick={() => this.props.onDecrement(item.id, item.harga)}
             className="button is-danger"
           >
             -
           </button>
           <p>{item.quantity}</p>
           <button
-            onClick={() => this.props.onIncrement(item.id, item.harga)}
+            // onClick={() => this.props.onIncrement(item.id, item.harga)}
             className="button is-primary"
           >
             +
           </button>
         </div>
         <button
-          onClick={() =>
-            this.props.onRemoveCart(item.id, item.harga, item.quantity)
-          }
+          onClick={() => this.props.onRemoveCart(item.id, item.harga)}
           className="button is-danger"
         >
           Remove From Keranjang
@@ -71,15 +69,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onRemoveCart: (id, harga, quantity) =>
+    onRemoveCart: (id, harga) =>
       dispatch({
         type: actionTypes.REMOVE_CART,
-        payload: {id: id, harga: harga, quantity: quantity}
-      }),
-    onIncrement: (id, harga) =>
-      dispatch({type: actionTypes.INCREMENT, payload: {id: id, harga: harga}}),
-    onDecrement: (id, harga) =>
-      dispatch({type: actionTypes.DECREMENT, payload: {id: id, harga: harga}})
+        payload: {id: id, harga: harga}
+      })
+    // onIncrement: (id, harga) =>
+    //   dispatch({type: actionTypes.INCREMENT, payload: {id: id, harga: harga}}),
+    // onDecrement: (id, harga) =>
+    //   dispatch({type: actionTypes.DECREMENT, payload: {id: id, harga: harga}})
   };
 };
 
