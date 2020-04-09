@@ -3,18 +3,16 @@ import {NavLink} from 'react-router-dom';
 
 const navbar = props => (
   <div
-    className="navbar is-info"
+    className="navbar is-light"
     role="navigation"
     aria-label="main navigation"
   >
     <div className="navbar-brand">
-      <h1
-        className="title"
-        style={{color: '#fff', padding: '15px 0', margin: '0 2rem'}}
-      >
+      <h1 className="title" style={{padding: '15px 0', margin: '0 2rem'}}>
         AnekaNasi.com
       </h1>
       <a
+        href="..."
         onClick={props.click}
         role="button"
         className="navbar-burger burger"

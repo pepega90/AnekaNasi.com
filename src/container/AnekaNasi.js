@@ -4,6 +4,8 @@ import dataNasi from '../productData/nasiData';
 import * as actionTypes from '../store/actions';
 import {connect} from 'react-redux';
 
+import Footer from '../components/Footer/Footer';
+
 class AnekaNasi extends Component {
   state = {
     nasi: dataNasi
@@ -56,6 +58,7 @@ class AnekaNasi extends Component {
         <div className="container">
           <div className={styling.productKolom}>{anekenasi}</div>
         </div>
+        <Footer />
       </div>
     );
   }
