@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../store/actions';
+import * as actionCreators from '../../store/actions';
 import styling from './Cart.module.css';
 
 class Cart extends Component {
@@ -55,10 +55,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onRemoveCart: (id, harga) =>
-      dispatch({
-        type: actionTypes.REMOVE_CART,
-        payload: {id: id, harga: harga}
-      })
+      dispatch(actionCreators.remove_cart(id,harga))
   };
 };
 

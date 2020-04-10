@@ -11,23 +11,23 @@ const reducer = (state = initalState, action) => {
       return {
         ...state,
         cart: state.cart.concat({
-          id: action.payload.id,
-          nama: action.payload.nama,
-          harga: action.payload.harga,
-          gambar: action.payload.gambar,
-          inCart: !action.payload.inCart,
-          quantity: action.payload.quantity
+          id: action.id,
+          nama: action.nama,
+          harga: action.harga,
+          gambar: action.gambar,
+          inCart: !action.inCart,
+          quantity: action.quantity
         }),
-        totalPrice: state.totalPrice + action.payload.harga
+        totalPrice: state.totalPrice + action.harga
       };
     case actionTypes.REMOVE_CART:
       const updatedCart = state.cart.filter(
-        item => item.id !== action.payload.id
+        item => item.id !== action.id
       );
       return {
         ...state,
         cart: updatedCart,
-        totalPrice: state.totalPrice - action.payload.harga
+        totalPrice: state.totalPrice - action.harga
       };
     default:
       return state;

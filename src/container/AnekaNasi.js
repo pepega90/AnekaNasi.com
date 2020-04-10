@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styling from './AnekaNasi.module.css';
 import dataNasi from '../productData/nasiData';
-import * as actionTypes from '../store/actions';
+import * as actionCreators from '../store/actions';
 import {connect} from 'react-redux';
 
 import Footer from '../components/Footer/Footer';
@@ -68,17 +68,7 @@ class AnekaNasi extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     onAddCart: (id, nama, harga, gambar, inCart, quantity) =>
-      dispatch({
-        type: actionTypes.ADD_CART,
-        payload: {
-          id: id,
-          nama: nama,
-          harga: harga,
-          gambar: gambar,
-          inCart: inCart,
-          quantity: quantity
-        }
-      })
+      dispatch(actionCreators.add_cart(id, nama, harga, gambar, inCart, quantity))
   };
 };
 
