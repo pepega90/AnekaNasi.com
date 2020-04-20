@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styling from './AnekaNasi.module.css';
 import dataNasi from '../productData/nasiData';
 import * as actionCreators from '../store/actions';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import Footer from '../components/Footer/Footer';
 
@@ -12,7 +12,7 @@ class AnekaNasi extends Component {
   };
 
   render() {
-    let anekenasi = this.state.nasi.map(nasi => (
+    let anekenasi = this.state.nasi.map( nasi => (
       <div key={nasi.nama} className="column">
         <div className={styling.card} style={{padding: '10px'}}>
           <h1 className="title">{nasi.nama}</h1>
@@ -40,7 +40,7 @@ class AnekaNasi extends Component {
           </div>
         </div>
       </div>
-    ));
+    ) );
 
     return (
       <div>
@@ -67,9 +67,9 @@ class AnekaNasi extends Component {
 // redux section
 const mapDispatchToProps = dispatch => {
   return {
-    onAddCart: (id, nama, harga, gambar, inCart, quantity) =>
-      dispatch(actionCreators.add_cart(id, nama, harga, gambar, inCart, quantity))
+    onAddCart: ( id, nama, harga, gambar, inCart, quantity ) =>
+      dispatch( actionCreators.add_cart( id, nama, harga, gambar, inCart, quantity ) )
   };
 };
 
-export default connect(null, mapDispatchToProps)(AnekaNasi);
+export default connect( null, mapDispatchToProps )( AnekaNasi );

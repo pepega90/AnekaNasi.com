@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions';
 import styling from './Cart.module.css';
 
 class Cart extends Component {
   render() {
-    let cart = this.props.cart.map(item => (
+    let cart = this.props.cart.map( item => (
       <div key={item.id} className={styling.singleKolom}>
         <div className={styling.headerSingle}>
           <h1 className="title">{item.nama}</h1>
@@ -19,7 +19,7 @@ class Cart extends Component {
           Remove From Keranjang
         </button>
       </div>
-    ));
+    ) );
     return (
       <div className="container">
         <div className={styling.header}>
@@ -54,9 +54,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onRemoveCart: (id, harga) =>
-      dispatch(actionCreators.remove_cart(id,harga))
+    onRemoveCart: ( id, harga ) =>
+      dispatch( actionCreators.remove_cart( id, harga ) )
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect( mapStateToProps, mapDispatchToProps )( Cart );
