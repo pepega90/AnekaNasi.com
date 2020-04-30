@@ -33,6 +33,15 @@
 
 .productKolom {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 350px);
+  justify-content: center;
   grid-gap: 1em;
+}
+
+@media (min-width: 500px) {
+  .productKolom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+  }
 }

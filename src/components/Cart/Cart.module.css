@@ -16,9 +16,24 @@
   align-items: center;
 }
 
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.detail button {
+  margin: 1.2rem 0;
+  width: 100%;
+}
+
+.keranjang {
+  width: 75%;
+  margin: 0 auto;
+}
+
 .info {
   display: flex;
-  width: 600px;
   justify-content: space-between;
 }
 
@@ -33,4 +48,11 @@
 
 .quantity button {
   margin: 0 10px;
+}
+
+@media (min-width: 500px) {
+  .keranjang {
+    width: 80%;
+    margin: 0 auto;
+  }
 }

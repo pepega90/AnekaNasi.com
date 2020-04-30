@@ -2,7 +2,7 @@ import * as actionTypes from './actions';
 
 const initalState = {
     cart: [],
-    totalPrice: 0
+    totalPrice: 0,
 };
 
 const reducer = (state = initalState, action) => {
@@ -16,17 +16,21 @@ const reducer = (state = initalState, action) => {
                     harga: action.harga,
                     gambar: action.gambar,
                     inCart: !action.inCart,
-                    quantity: action.quantity
                 }),
-                totalPrice: state.totalPrice + action.harga
+                totalPrice: state.totalPrice + action.harga,
             };
         case actionTypes.REMOVE_CART:
-            const updatedCart = state.cart.filter(item => item.id !== action.id);
+            const updatedCart = state.cart.filter(
+                item => item.id !== action.id
+            );
             const backToFirstTotal = 0;
             return {
                 ...state,
                 cart: updatedCart,
-                totalPrice: updatedCart.length <= 0 ? backToFirstTotal : state.totalPrice - action.harga
+                totalPrice:
+                    updatedCart.length <= 0
+                        ? backToFirstTotal
+                        : state.totalPrice - action.harga,
             };
         default:
             return state;

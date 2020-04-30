@@ -1,16 +1,24 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 
 import Navbar from '../components/Navbar/Navbar';
 
-class Layout extends Component {
-  render() {
-    return (
-      <div>
-        <Navbar />
-        <main>{this.props.children}</main>
-      </div>
-    );
-  }
-}
+const Layout = props => {
+	const [open, setOpen] = useState(false);
+
+	const openMenu = () => {
+		setOpen(true);
+	};
+
+	const close = () => {
+		setOpen(false);
+	};
+
+	return (
+		<div>
+			<Navbar show={open} tutup={close} click={openMenu} />
+			<main>{props.children}</main>
+		</div>
+	);
+};
 
 export default Layout;
