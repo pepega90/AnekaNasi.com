@@ -9,6 +9,17 @@ import Footer from '../components/Footer/Footer';
 const AnekaNasi = props => {
   const nasi = useState(dataNasi)[0];
 
+  const goCart = (id, nama, harga, gambar, inCart) => {
+    const findNasi = nasi.findIndex(item => item.id === id);
+    props.cart.forEach(item => {
+      if (nasi[findNasi].id === item.id) {
+        alert(`${nasi[findNasi].nama} Sudah Ada Di Keranjang`);
+        props.onRemoveCart(nasi[findNasi].id, nasi[findNasi].harga);
+      }
+    });
+    props.onAddCart(id, nama, harga, gambar, inCart);
+  };
+
   let listNasi = nasi.map(rice => (
     <div key={rice.nama} className="column">
       <div className={styling.card} style={{ padding: '10px' }}>
@@ -20,17 +31,16 @@ const AnekaNasi = props => {
           <strong>Rp{rice.harga}</strong>
           <button
             style={{ margin: '10px 0' }}
-            onClick={() =>
-              props.onAddCart(
-                rice.id,
-                rice.nama,
-                rice.harga,
-                rice.image,
-                rice.inCart
-              )
-            }
-            className="button is-primary">
-            Add to Keranjang
+            onClick={goCart.bind(
+              this,
+              rice.id,
+              rice.nama,
+              rice.harga,
+              rice.image,
+              rice.inCart
+            )}
+            className={rice.inCart ? 'button is-danger' : 'button is-primary'}>
+            Add to Cart
           </button>
         </div>
       </div>
@@ -59,11 +69,19 @@ const AnekaNasi = props => {
 };
 
 // redux section
+const mapStateToProps = state => {
+  return {
+    cart: state.cart,
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     onAddCart: (id, nama, harga, gambar, inCart) =>
       dispatch(actionCreators.add_cart(id, nama, harga, gambar, inCart)),
+    onRemoveCart: (id, harga) =>
+      dispatch(actionCreators.remove_cart(id, harga)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(AnekaNasi);
+export default connect(mapStateToProps, mapDispatchToProps)(AnekaNasi);

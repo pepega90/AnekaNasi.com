@@ -13,7 +13,7 @@ const Cart = props => {
       <div className={styling.detail}>
         <strong>Rp{item.harga}</strong>
         <button
-          onClick={() => props.onRemoveCart(item.id, item.harga)}
+          onClick={props.onRemoveCart.bind(this, item.id, item.harga)}
           className="button is-danger">
           Remove
         </button>
@@ -35,7 +35,7 @@ const Cart = props => {
           <div className={styling.kolom}>{cart}</div>
           <div className={styling.total}>
             <h1 className="title">Total Harga</h1>
-            <h2 className="title is-3">Rp{props.total}</h2>
+            <h2 className="title is-3">Rp{props.total.toLocaleString()}</h2>
           </div>
         </div>
       ) : (
